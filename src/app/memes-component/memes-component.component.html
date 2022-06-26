@@ -1,0 +1,3 @@
+<div *ngIf="memes && memes.success">
+  <app-memes-component-display *ngFor="let x of memes.data.memes" [MemeLink]="x.url" [Title]="x.name"></app-memes-component-display>
+</div>
