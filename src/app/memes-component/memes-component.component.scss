@@ -1,0 +1,9 @@
+@use "@material/image-list";
+@use "@material/image-list/mdc-image-list";
+@use "@material/fab";
+
+@include fab.core-styles;
+
+.my-masonry-image-list {
+  @include image-list.masonry-columns(5);
+}

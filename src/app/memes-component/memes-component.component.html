@@ -1,3 +1,25 @@
-<div *ngIf="memes && memes.success">
-  <app-memes-component-display *ngFor="let x of memes.data.memes" [MemeLink]="x.url" [Title]="x.name"></app-memes-component-display>
+<div #root *ngIf="memes && memes.success">
+  <!-- Optimal scrolling -->
+  <div style="display: flex;justify-content: center;margin: 0 auto;">
+    <div infiniteScroll #scroll>
+      <div *ngFor="let x of memes.data.memes">
+        <app-memes-component-display [MemeLink]="x.url" [Title]="x.name"></app-memes-component-display>
+      </div>
+    </div>
+    <div style="display: flex;flex-direction: column;margin-left: 32px;flex: 0 0 300px">
+      <div style="margin-top: 24px">
+        <span>You might also enjoy these cats!</span>
+        <img src="https://cdn2.thecatapi.com/images/MTU1OTA2MA.jpg" alt="cat picture" width="300px" height="auto"/>
+      </div>
+      <div style="display:flex;justify-content:center;top: calc(100vh - 20px);transform: translateY(-100%);position: sticky">
+        <button mat-fab color="accent" (mouseover)="top.enableAnimation()" (mouseleave)="top.disableAnimation()" (click)="ScrollTop()">
+          <app-materialicon360 #top [start]="'expand_less'" [end]="'arrow_upward'"></app-materialicon360>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
+

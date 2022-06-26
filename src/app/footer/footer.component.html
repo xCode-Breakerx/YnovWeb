@@ -1,1 +1,21 @@
-<p>footer works!</p>
+<mat-toolbar style="bottom: 0;max-width: 100%; display: flex;justify-content: center" color="primary">
+  <mat-toolbar-row>
+    <span style="flex: 1 1 auto"></span>
+    <div style="display: flex;flex-direction: row;">
+      <a mat-button (mouseover)="discord.enableAnimation()" (mouseleave)="discord.disableAnimation()" (click)="OpenLink('https://discordapp.com/users/278534122476011521')">
+        <app-materialicon360 [start]="'discord'" [end]="'discord'" #discord></app-materialicon360>
+        <span> Code Breaker Umbra</span>
+      </a>
+      <a mat-button (click)="OpenLink('https://www.linkedin.com/in/ddc-l/')">
+        <mat-icon svgIcon="linkedin"></mat-icon>
+        <span> David Da Costa</span>
+      </a>
+    </div>
+    <span style="flex: 1 1 auto"></span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <span style="flex: 1 1 auto"></span>
+    <span>@Code Breaker Umbra</span>
+    <span style="flex: 1 1 auto"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
