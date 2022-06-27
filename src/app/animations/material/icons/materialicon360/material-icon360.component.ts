@@ -31,6 +31,7 @@ export class MaterialIcon360Component implements OnInit
 
   toggle()
   {
+    debugger
     if( !this.animateFromParent ) this.animate = !this.animate;
   }
 
