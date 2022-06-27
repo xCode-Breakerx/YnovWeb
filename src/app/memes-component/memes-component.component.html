@@ -3,7 +3,7 @@
   <div style="display: flex;justify-content: center;margin: 0 auto;">
     <div infiniteScroll #scroll>
       <div *ngFor="let x of memes.data.memes">
-        <app-memes-component-display [MemeLink]="x.url" [Title]="x.name"></app-memes-component-display>
+        <app-memes-component-display [Meme]="x"></app-memes-component-display>
       </div>
     </div>
     <div style="display: flex;flex-direction: column;margin-left: 24px;flex: 0 0 300px">

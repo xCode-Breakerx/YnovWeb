@@ -1,0 +1,32 @@
+<div *ngIf="data && data.meme">
+  <div style="display: flex;flex-direction: column">
+    <!-- Image and and text layout -->
+    <button mat-icon-button style="justify-content: flex-end"></button>
+    <div style="display: flex;flex-direction: row;justify-content: center">
+      <div>
+        <div style="display: flex;justify-content: center">
+          <span>{{data.meme.name}}</span>
+        </div>
+        <div style="display: flex;flex-direction: column;justify-content: center">
+          <div style="width: 250px;height: 250px;justify-content: center;display: flex">
+            <img src="{{data.meme.url}}" alt="meme - {{data.meme.name}}" style="object-fit: contain;max-width: 100%;height: auto"/>
+          </div>
+        </div>
+      </div>
+      <div style="padding-left: 24px">
+        <form #DynamicForm>
+          <mat-form-field *ngFor="let x of [].constructor(data.meme.box_count); let i = index" appearance="outline">
+            <mat-label>Text #{{i}}</mat-label>
+            <input matInput/>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+    <!--Buttons and loading-->
+    <div>
+      <button mat-button (click)="GenerateMeme(DynamicForm)">
+        <mat-label>Generate!</mat-label>
+      </button>
+    </div>
+  </div>
+</div>

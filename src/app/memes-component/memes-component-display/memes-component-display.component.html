@@ -1,11 +1,17 @@
 <mat-card class="memeCard">
   <mat-card-header>
-    <mat-card-title>{{Title}}</mat-card-title>
+    <mat-card-title>{{Meme.name}}</mat-card-title>
     <mat-card-subtitle>Look at this epic meme!</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="{{MemeLink}}" alt="Haha funny meme"/>
-  <a mat-button color="accent" [href]="MemeLink" target="_blank">
-    <mat-icon>open_in_new</mat-icon>
-    <span>Open original</span>
-  </a>
+  <img mat-card-image src="{{Meme.url}}" alt="Haha funny meme"/>
+  <div style="display: flex;justify-content: space-between">
+    <a mat-stroked-button [href]="Meme.url" target="_blank">
+      <mat-icon>open_in_new</mat-icon>
+      <span>Open original</span>
+    </a>
+    <button mat-raised-button color="primary" (click)="OpenMemeEditor()">
+      <mat-icon>open_in_new</mat-icon>
+      <span>Use template</span>
+    </button>
+  </div>
 </mat-card>

@@ -25,18 +25,25 @@ import { InfiniteScrollModule }           from "ngx-infinite-scroll";
 import { MatInputModule }                 from "@angular/material/input";
 import { ServiceWorkerModule }            from '@angular/service-worker';
 import { environment }                    from '../environments/environment';
+import { MemeMakerComponent }             from './mememaker/meme-maker.component';
+import { MemeMakerDialogComponent }       from './memes-component/meme-maker-dialog/meme-maker-dialog.component';
+import { MatDialogModule }                from "@angular/material/dialog";
 
 @NgModule({
             declarations: [
+              MemeMakerDialogComponent,
               AppComponent,
               FooterComponent,
               MemesComponentComponent,
               MemesComponentDisplayComponent,
               HeaderComponent,
               NavbarComponent,
-              MaterialIcon360Component
+              MaterialIcon360Component,
+              MemeMakerComponent,
+              MemeMakerDialogComponent
             ],
             imports     : [
+              MatDialogModule,
               BrowserModule,
               BrowserAnimationsModule,
               HttpClientModule,
