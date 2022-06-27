@@ -25,13 +25,10 @@ export class MaterialIcon360Component implements OnInit
 
   ngOnInit()
   {
-    // console.log(this.colorStart);
-    // console.log(this.colorEnd);
   }
 
   toggle()
   {
-    debugger
     if( !this.animateFromParent ) this.animate = !this.animate;
   }
 

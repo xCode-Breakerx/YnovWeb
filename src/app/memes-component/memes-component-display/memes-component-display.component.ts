@@ -24,8 +24,8 @@ export class MemesComponentDisplayComponent implements OnInit
   OpenMemeEditor()
   {
     this.dialog.open(MemeMakerDialogComponent, {
-      width : "600px",
-      height: "600px",
+      width : "auto",
+      height: "auto",
       data  : {
         meme: this.Meme
       }

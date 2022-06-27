@@ -1,32 +1,60 @@
 <div *ngIf="data && data.meme">
   <div style="display: flex;flex-direction: column">
     <!-- Image and and text layout -->
-    <button mat-icon-button style="justify-content: flex-end"></button>
+    <div style="display: flex;justify-content: flex-end;padding: 10px">
+      <button mat-icon-button color="warn" (click)="dialogRef.close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
     <div style="display: flex;flex-direction: row;justify-content: center">
       <div>
         <div style="display: flex;justify-content: center">
-          <span>{{data.meme.name}}</span>
+          <h2>{{data.meme.name}}</h2>
         </div>
         <div style="display: flex;flex-direction: column;justify-content: center">
-          <div style="width: 250px;height: 250px;justify-content: center;display: flex">
-            <img src="{{data.meme.url}}" alt="meme - {{data.meme.name}}" style="object-fit: contain;max-width: 100%;height: auto"/>
+          <div style="width: 400px;height: 400px;justify-content: center;display: flex">
+            <img src="{{bIsMemeReady?created_meme?created_meme!.success?created_meme!.data!.url:data.meme.url:data.meme.url:data.meme.url}}" alt="meme - {{data.meme.name}}" style="object-fit: contain;max-width: 100%;height: auto"/>
           </div>
         </div>
       </div>
-      <div style="padding-left: 24px">
-        <form #DynamicForm>
+      <div style="padding-left: 24px;">
+        <form #DynamicForm style="display: flex;flex-direction: column">
           <mat-form-field *ngFor="let x of [].constructor(data.meme.box_count); let i = index" appearance="outline">
             <mat-label>Text #{{i}}</mat-label>
-            <input matInput/>
+            <input id="__dynamic__[{{i}}]" matInput/>
           </mat-form-field>
         </form>
       </div>
     </div>
     <!--Buttons and loading-->
-    <div>
-      <button mat-button (click)="GenerateMeme(DynamicForm)">
-        <mat-label>Generate!</mat-label>
-      </button>
+    <div style="display: flex;justify-content: center;padding: 30px">
+      <div *ngIf="!bIsProcessing else LoadingBar">
+        <div *ngIf="!bIsMemeReady else MemeReady">
+          <button mat-raised-button color="primary" (click)="GenerateMeme(DynamicForm)">
+            <mat-label>Generate !</mat-label>
+          </button>
+        </div>
+        <ng-template #MemeReady>
+          <button mat-raised-button color="primary" (click)="GenerateMeme(DynamicForm)">
+            <mat-label>Generate !</mat-label>
+          </button>
+          <button *ngIf="bIsMemeReady && created_meme!.success else InvalidMeme" mat-raised-button color="primary" (click)="OpenMeme()">
+            <mat-icon>link</mat-icon>
+            <mat-label>Open in new tab</mat-label>
+          </button>
+          <ng-template #InvalidMeme>
+            <div *ngIf="created_meme else invalidHttp">
+              {{created_meme.error_message}}
+            </div>
+            <ng-template #invalidHttp>
+              <mat-error>Unknown Error</mat-error>
+            </ng-template>
+          </ng-template>
+        </ng-template>
+      </div>
+      <ng-template #LoadingBar style="padding-left:20px;padding-right: 20px ">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </ng-template>
     </div>
   </div>
 </div>

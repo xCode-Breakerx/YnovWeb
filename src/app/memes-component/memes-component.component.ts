@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MemesModel }        from "../models/MemesModel";
-import { ApiServiceService } from "../api-service.service";
-import { CatsModel }         from "../models/catsModel";
+import { ApiServiceService } from "../Services/api-service.service";
+import { CatsModel }         from "../models/CatsModel";
 
 @Component({
              selector   : 'app-memes-component',
