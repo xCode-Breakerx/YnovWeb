@@ -23,8 +23,8 @@ import { NavbarComponent }                from './header/navbar/navbar.component
 import { MaterialIcon360Component }       from './animations/material/icons/materialicon360/material-icon360.component';
 import { InfiniteScrollModule }           from "ngx-infinite-scroll";
 import { MatInputModule }                 from "@angular/material/input";
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import { ServiceWorkerModule }            from '@angular/service-worker';
+import { environment }                    from '../environments/environment';
 
 @NgModule({
             declarations: [
@@ -36,7 +36,7 @@ import { environment } from '../environments/environment';
               NavbarComponent,
               MaterialIcon360Component
             ],
-            imports: [
+            imports     : [
               BrowserModule,
               BrowserAnimationsModule,
               HttpClientModule,
