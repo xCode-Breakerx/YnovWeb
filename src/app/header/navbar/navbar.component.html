@@ -5,7 +5,7 @@
       <span> Home</span>
     </a>
     <button mat-icon-button (click)="SwitchMode(mode)">
-      <app-materialicon360 style="pointer-events: none" #mode [start]="'light_mode'" [end]="'dark_mode'" [animateFromParent]="false"></app-materialicon360>
+      <app-materialicon360 #switch style="pointer-events: none" #mode [start]="'light_mode'" [end]="'dark_mode'" [animateFromParent]="false"></app-materialicon360>
     </button>
   </div>
 </nav>
