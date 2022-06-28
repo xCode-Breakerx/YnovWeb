@@ -6,18 +6,18 @@
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <div style="display: flex;flex-direction: row;justify-content: center">
+    <div class="root_meme_maker_container">
       <div>
         <div style="display: flex;justify-content: center">
           <h2>{{data.meme.name}}</h2>
         </div>
         <div style="display: flex;flex-direction: column;justify-content: center">
-          <div style="width: 400px;height: 400px;justify-content: center;display: flex">
+          <div class="root_meme_maker_img">
             <img src="{{bIsMemeReady?created_meme?created_meme!.success?created_meme!.data!.url:data.meme.url:data.meme.url:data.meme.url}}" alt="meme - {{data.meme.name}}" style="object-fit: contain;max-width: 100%;height: auto"/>
           </div>
         </div>
       </div>
-      <div style="padding-left: 24px;">
+      <div id="root_input_text">
         <form #DynamicForm style="display: flex;flex-direction: column">
           <mat-form-field *ngFor="let x of [].constructor(data.meme.box_count); let i = index" appearance="outline">
             <mat-label>Text #{{i}}</mat-label>
