@@ -1,3 +1,6 @@
+/**
+ * The model for the boxes' data on the imgflip caption api endpoint
+ */
 export class BoxesModel
 {
   text: string = null!;
@@ -9,6 +12,9 @@ export class BoxesModel
   height: number | undefined;
 }
 
+/**
+ * The model of the imgflip caption api endpoint
+ */
 export class CaptionMemeModel
 {
   template_id: string   = null!;

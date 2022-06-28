@@ -5,6 +5,9 @@ import { Subject, takeUntil }            from "rxjs";
 import { ApiServiceService }             from "../../Services/api-service.service";
 import { BoxesModel, CaptionMemeModel }  from "../../models/CaptionMemeModel";
 
+/**
+ * Dialog data interface
+ */
 export interface DialogData
 {
   meme: Meme
@@ -20,6 +23,9 @@ class Sugoma
         } | undefined;
 }
 
+/**
+ * Dialog component used to create memes from the selected template
+ */
 @Component({
              selector   : 'app-meme-maker-dialog',
              templateUrl: './meme-maker-dialog.component.html',
@@ -30,7 +36,7 @@ export class MemeMakerDialogComponent
 
   bIsProcessing: boolean                   = false;
   bIsMemeReady: boolean                    = false;
-  private CancellationToken: Subject<void> = new Subject<void>();
+  private CancellationToken: Subject<void> = new Subject<void>(); // Subject used to control the http request
   public created_meme: Sugoma | undefined;
 
   constructor(
@@ -41,18 +47,23 @@ export class MemeMakerDialogComponent
   {
   }
 
+  /**
+   * Resets the dialog state
+   * @constructor
+   */
   ResetState()
   {
-    this.CancellationToken.next();
+    this.CancellationToken.next(); // cancel pending request(s)
     this.bIsProcessing = false;
     this.bIsMemeReady  = false;
     this.created_meme  = undefined;
   }
 
-  GenerateMeme(DynamicForm: HTMLFormElement)
+  GenerateMeme()
   {
     let input: HTMLInputElement[] = [];
 
+    // retrieve all the text boxes
     for( let i = 0; i < this.data.meme.box_count; i++ )
     {
       input.push(document.getElementById(`__dynamic__[${i}]`) as HTMLInputElement)
@@ -60,18 +71,14 @@ export class MemeMakerDialogComponent
 
     this.ResetState();
     this.bIsProcessing = true;
+    // call the api endpoint to that creates a meme
     this.api.CreateMeme({
                           template_id: this.data.meme.id,
-                          username   : "codebreakerumbra",
-                          password   : "%coffee%#69",
-                          boxes      : input.map(i =>
-                                                 {
-                                                   let boxesModel: BoxesModel = new BoxesModel();
-                                                   boxesModel.text            = i.value;
-                                                   return boxesModel;
-                                                 })
+                          username   : "codebreakerumbra", // unsafe code
+                          password   : "%coffee%#69", // unsafe code
+                          boxes      : input.map(i => ({text: i.value} as BoxesModel)) // map the input text to the box structure
                         } as CaptionMemeModel)
-        .pipe(takeUntil(this.CancellationToken))
+        .pipe(takeUntil(this.CancellationToken)) // cancellation token
         .subscribe(
           {
             next    : value =>
@@ -91,6 +98,7 @@ export class MemeMakerDialogComponent
         );
   }
 
+  // opens the created meme on a new tab
   OpenMeme()
   {
     if( this.created_meme )

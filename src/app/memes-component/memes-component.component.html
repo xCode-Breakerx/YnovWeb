@@ -13,7 +13,7 @@
         </div>
         <div style="display: flex;flex-direction: row;">
           <div style="display: flex;justify-content: center;flex-direction: column;padding: 5px">
-            <button mat-mini-fab (click)="Prev()" (mouseover)="left.enableAnimation()" (mouseleave)="left.disableAnimation()">
+            <button mat-mini-fab (click)="PrevCat()" (mouseover)="left.enableAnimation()" (mouseleave)="left.disableAnimation()">
               <app-materialicon360 #left [start]="'chevron_left'" [end]="'arrow_backward'"></app-materialicon360>
             </button>
           </div>
@@ -21,7 +21,7 @@
             <img src="{{cats[Index].url}}" style="object-fit: contain;max-width: 100%;height: auto" alt="cat picture"/>
           </div>
           <div style="display: flex;justify-content: center;flex-direction: column;padding: 5px">
-            <button mat-mini-fab (click)="Next()" (mouseover)="right.enableAnimation()" (mouseleave)="right.disableAnimation()">
+            <button mat-mini-fab (click)="NextCat()" (mouseover)="right.enableAnimation()" (mouseleave)="right.disableAnimation()">
               <app-materialicon360 #right [start]="'chevron_right'" [end]="'arrow_forward'"></app-materialicon360>
             </button>
           </div>

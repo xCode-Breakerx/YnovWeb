@@ -30,12 +30,12 @@
     <div style="display: flex;justify-content: center;padding: 30px">
       <div *ngIf="!bIsProcessing else LoadingBar">
         <div *ngIf="!bIsMemeReady else MemeReady">
-          <button mat-raised-button color="primary" (click)="GenerateMeme(DynamicForm)">
+          <button mat-raised-button color="primary" (click)="GenerateMeme()">
             <mat-label>Generate !</mat-label>
           </button>
         </div>
         <ng-template #MemeReady>
-          <button mat-raised-button color="primary" (click)="GenerateMeme(DynamicForm)">
+          <button mat-raised-button color="primary" (click)="GenerateMeme()">
             <mat-label>Generate !</mat-label>
           </button>
           <button *ngIf="bIsMemeReady && created_meme!.success else InvalidMeme" mat-raised-button color="primary" (click)="OpenMeme()">

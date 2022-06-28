@@ -1,3 +1,6 @@
+/**
+ * The memes model for the imgflip api response
+ */
 export class MemesModel
 {
   success: boolean      = false;
@@ -5,6 +8,9 @@ export class MemesModel
 
 }
 
+/**
+ * Model that represents the structure of a meme in the imgflip response body
+ */
 export class Meme
 {
   id: string        = "";

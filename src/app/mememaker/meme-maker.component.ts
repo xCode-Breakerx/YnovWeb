@@ -9,7 +9,8 @@ import { ActivatedRoute }    from "@angular/router";
            })
 export class MemeMakerComponent implements OnInit
 {
-  Meme: Meme | undefined;
+
+  Meme: Meme | undefined; // meme ref
 
   constructor(private route: ActivatedRoute)
   {
@@ -18,7 +19,6 @@ export class MemeMakerComponent implements OnInit
 
   ngOnInit(): void
   {
-
     this.route.params.subscribe((value: any) =>
                                 {
                                   try
@@ -26,7 +26,6 @@ export class MemeMakerComponent implements OnInit
                                     this.Meme = JSON.parse(value.meme) as Meme;
                                   } catch( e )
                                   {
-
                                     window.open("/");
                                   }
                                 })

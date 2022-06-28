@@ -5,8 +5,14 @@ import { MemesModel }                          from "../models/MemesModel";
 import { CatsModel }                           from "../models/CatsModel";
 import { CaptionMemeModel }                    from "../models/CaptionMemeModel";
 
+/**
+ * This api should not be here
+ */
 const APIKEY: string = "1e9157f9-f4c8-4ed4-9f27-d3d5bd6b1815";
 
+/**
+ * A service provided in the root which handles API calls
+ */
 @Injectable({
               providedIn: 'root'
             })
@@ -21,14 +27,22 @@ export class ApiServiceService
   private create_meme_api_url: string = `https://api.imgflip.com/caption_image`;
   private cat_api_url: string         = `https://api.thecatapi.com/v1/images`;
 
+  /**
+   * retrieve a list of memes
+   */
   public getMemes(): Observable<MemesModel>
   {
     return this.httpClient
                .get<MemesModel>(`${this.api_url}/get_memes`);
   }
 
+  /**
+   * Retrieve a list of cats
+   * @param limit the max amount of cats to retrieve
+   */
   public getCats(limit: number = 30): Observable<CatsModel[]>
   {
+    console.assert(limit > 0);
     return this.httpClient
                .get<CatsModel[]>(`${this.cat_api_url}/search?limit=${limit}`, {
                  headers: {
@@ -37,13 +51,20 @@ export class ApiServiceService
                });
   }
 
+  /**
+   * Create a meme using imglfip caption endpoint
+   * @param caption the caption model to send in the POST request
+   * @constructor
+   */
   public CreateMeme(caption: CaptionMemeModel): Observable<{success: boolean, error_message: string}>
   {
+    // set the http params because the body is x-www-form-urlencoded and not json
     let params: HttpParams = new HttpParams()
       .set("username", caption.username)
       .set("password", caption.password)
       .set("template_id", caption.template_id)
 
+    //  set the optional fields if they exist
     if( caption.text0 )
       params = params.set("text0", caption.text0)
     if( caption.text1 )
@@ -74,9 +95,10 @@ export class ApiServiceService
 
     return this.httpClient
                .post<{success: boolean, error_message: string}>
-               (this.create_meme_api_url, params.toString(), {
-                 headers: new HttpHeaders()
-                   .set("Content-Type", "application/x-www-form-urlencoded")
-               })
+               (this.create_meme_api_url,
+                params.toString(), {
+                  headers: new HttpHeaders()
+                    .set("Content-Type", "application/x-www-form-urlencoded") // content is x-www-form-urlencoded
+                }) // api key is not required as we use user credentials
   }
 }

@@ -3,6 +3,9 @@ import { MemesModel }        from "../models/MemesModel";
 import { ApiServiceService } from "../Services/api-service.service";
 import { CatsModel }         from "../models/CatsModel";
 
+/**
+ * . Structures the memes page and handles the memes display layout
+ */
 @Component({
              selector   : 'app-memes-component',
              templateUrl: './memes-component.component.html',
@@ -12,10 +15,10 @@ import { CatsModel }         from "../models/CatsModel";
 export class MemesComponentComponent implements OnInit
 {
 
-  memes: MemesModel | undefined;
-  cats: CatsModel[] | undefined;
+  memes: MemesModel | undefined; // all the memes retrieved from the api
+  cats: CatsModel[] | undefined; // the cats to distract the user
   MaxSize: number = 0;
-  Index: number   = 0;
+  Index: number   = 0; // current selected cat index
 
   constructor(private httpService: ApiServiceService)
   {
@@ -39,6 +42,10 @@ export class MemesComponentComponent implements OnInit
                    })
   }
 
+  /**
+   * Scroll to the top of the page with a smooth animation
+   * @constructor
+   */
   ScrollTop()
   {
     window.scroll({
@@ -48,12 +55,20 @@ export class MemesComponentComponent implements OnInit
                   })
   }
 
-  Prev()
+  /**
+   * Display the previous cat
+   * @constructor
+   */
+  PrevCat()
   {
     this.Index = (++this.Index) % this.cats!.length;
   }
 
-  Next()
+  /**
+   * Display the next cat
+   * @constructor
+   */
+  NextCat()
   {
     this.Index = --this.Index == -1 ? this.cats!.length - 1 : this.Index;
   }
