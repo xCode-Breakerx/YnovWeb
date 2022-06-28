@@ -7,3 +7,16 @@
 .my-masonry-image-list {
   @include image-list.masonry-columns(5);
 }
+
+.root_content {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+
+}
+
+.root_cat {
+  @media screen and (max-width: 850px) {
+    display: none;
+  }
+}

@@ -1,13 +1,13 @@
 <div #root *ngIf="memes && memes.success">
   <!-- Optimal scrolling -->
-  <div style="display: flex;justify-content: center;margin: 0 auto;">
+  <div class="root_content">
     <div infiniteScroll #scroll>
       <div *ngFor="let x of memes.data.memes">
         <app-memes-component-display [Meme]="x"></app-memes-component-display>
       </div>
     </div>
-    <div style="display: flex;flex-direction: column;margin-left: 24px;flex: 0 0 300px">
-      <div style="margin-top: 24px">
+    <div style="display: flex;flex-direction: column;margin-left: 24px;">
+      <div class="root_cat" style="margin-top: 24px">
         <div style="display: flex;justify-content: center">
           <h2>You might also enjoy these cats!</h2>
         </div>
