@@ -40,7 +40,7 @@ export class ApiServiceService
    * Retrieve a list of cats
    * @param limit the max amount of cats to retrieve
    */
-  public getCats(limit: number = 30): Observable<CatsModel[]>
+  public getCats(limit: number = 50): Observable<CatsModel[]>
   {
     console.assert(limit > 0);
     return this.httpClient

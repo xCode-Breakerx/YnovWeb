@@ -61,7 +61,7 @@ export class MemesComponentComponent implements OnInit
    */
   PrevCat()
   {
-    this.Index = (++this.Index) % this.cats!.length;
+    this.Index = --this.Index == -1 ? this.cats!.length - 1 : this.Index;
   }
 
   /**
@@ -70,6 +70,6 @@ export class MemesComponentComponent implements OnInit
    */
   NextCat()
   {
-    this.Index = --this.Index == -1 ? this.cats!.length - 1 : this.Index;
+    this.Index = (++this.Index) % this.cats!.length;
   }
 }
