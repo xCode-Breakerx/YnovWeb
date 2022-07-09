@@ -36,6 +36,7 @@ export class MemeMakerDialogComponent
 {
 
   bIsProcessing: boolean                   = false;
+  bIsProcessingInitialDisplay: boolean     = true;
   bIsMemeReady: boolean                    = false;
   private CancellationToken: Subject<void> = new Subject<void>(); // Subject used to control the http request
   public created_meme: Sugoma | undefined;
@@ -46,6 +47,30 @@ export class MemeMakerDialogComponent
     private api: ApiServiceService
   )
   {
+    api.CreateMeme({
+                     template_id: this.data.meme.id,
+                     username   : environment.user, // unsafe code
+                     password   : environment.pwd, // unsafe code
+                     boxes      : [...Array(this.data.meme.box_count).keys()].map(i => ({text: (i + 1).toString()} as BoxesModel)) // map the input text to the box structure
+                   } as CaptionMemeModel)
+       .pipe(takeUntil(this.CancellationToken)) // cancellation token
+       .subscribe(
+         {
+           next    : value =>
+           {
+             this.created_meme = value as Sugoma;
+           },
+           error   : error =>
+           {
+
+           },
+           complete: () =>
+           {
+             this.bIsMemeReady                = true
+             this.bIsProcessingInitialDisplay = false;
+           }
+         }
+       );
   }
 
   /**
@@ -62,6 +87,7 @@ export class MemeMakerDialogComponent
 
   GenerateMeme()
   {
+    if( this.bIsProcessingInitialDisplay ) return;
     let input: HTMLInputElement[] = [];
 
     // retrieve all the text boxes
