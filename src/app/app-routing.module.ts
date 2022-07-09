@@ -5,6 +5,11 @@ import { MemeMakerComponent }      from "./mememaker/meme-maker.component";
 
 const routes: Routes = [
   {
+    path      : "",
+    redirectTo: 'index',
+    pathMatch : "full"
+  },
+  {
     path     : "index",
     component: MemesComponentComponent
   },
