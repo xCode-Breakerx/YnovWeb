@@ -4,6 +4,7 @@ import { Meme }                          from "../../models/MemesModel";
 import { Subject, takeUntil }            from "rxjs";
 import { ApiServiceService }             from "../../Services/api-service.service";
 import { BoxesModel, CaptionMemeModel }  from "../../models/CaptionMemeModel";
+import { environment }                   from "../../../environments/environment";
 
 /**
  * Dialog data interface
@@ -74,8 +75,8 @@ export class MemeMakerDialogComponent
     // call the api endpoint to that creates a meme
     this.api.CreateMeme({
                           template_id: this.data.meme.id,
-                          username   : "codebreakerumbra", // unsafe code
-                          password   : "%coffee%#69", // unsafe code
+                          username   : environment.user, // unsafe code
+                          password   : environment.pwd, // unsafe code
                           boxes      : input.map(i => ({text: i.value} as BoxesModel)) // map the input text to the box structure
                         } as CaptionMemeModel)
         .pipe(takeUntil(this.CancellationToken)) // cancellation token
